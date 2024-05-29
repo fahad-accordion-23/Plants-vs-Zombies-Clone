@@ -1,5 +1,5 @@
 #ifndef Animation_h
-#define Animation_H
+#define Animation_h
 
 /* Forward Declarations
  */
