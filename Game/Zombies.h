@@ -20,7 +20,7 @@ protected:
     char state;
 
 public:
-    Zombie(Animation* animations, float x, float y, float step);
+    Zombie(Animation* animations, float x, float y, float step, int health, int damage);
     virtual void move() = 0;
     virtual bool animate() = 0;
     virtual void attack(Plant* plant) = 0;
@@ -30,7 +30,7 @@ public:
 class NormalZombie : public Zombie
 {
 public:
-    NormalZombie(Animation* animations, float x, float y, float step);
+    NormalZombie(Animation* animations, float x, float y, float step, int health, int damage);
     void move() override;
     bool animate() override;
     void attack(Plant* plant) override;
