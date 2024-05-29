@@ -1,6 +1,11 @@
 #include "Animation.h"
 #include <SFML/Graphics.hpp>
 
+Animation::Animation()
+    : window(nullptr), spritesheet(nullptr), noOfSprites(0), width(0), height(0), deltaTime(0), ends(false)
+{
+}
+
 Animation::Animation(sf::RenderWindow* window, sf::Sprite* spritesheet, int noOfSprites, int width, int height, bool ends)
     : window(window), spritesheet(spritesheet), noOfSprites(noOfSprites), width(width), height(height), deltaTime(0), ends(ends)
 {
