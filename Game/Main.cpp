@@ -1,4 +1,6 @@
 #include <SFML/Graphics.hpp>
+#include "Zombies.h"
+#include "Animation.h"
 #include <ctime>
 
 using namespace sf;
@@ -21,7 +23,7 @@ int main()
 {
     //Create a window, n*n
     RenderWindow window(VideoMode(1200, 700), "Plants Vs Zombies");
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(15);
 
     //Game icon
     Image icon;
@@ -47,6 +49,14 @@ int main()
         }
     }
 
+    Texture normalZombieWalk;
+    normalZombieWalk.loadFromFile("./../assets/spritesheets/nZombWalk.png");
+    Sprite nZombWalk;
+    nZombWalk.setTexture(normalZombieWalk);
+    Animation* animations = new Animation(&window, &nZombWalk, 22, 166, 144, false);
+    Zombie* myZombie = new NormalZombie(animations, 500, 0, -0.5, 100, 100);
+
+
     while (window.isOpen())
     {
          Event event;
@@ -58,9 +68,12 @@ int main()
 
         //Create a background
         createBack(window);
+        myZombie->move();
+        myZombie->animate();
 
         window.setSize(sf::Vector2u(550, 340));
         window.display();
     }
+
     return 0;
 }
