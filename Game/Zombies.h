@@ -13,13 +13,13 @@ protected:
     float x;
     float y;
     float step;
-    float deltaTime;
     int health;
     int damage;
     int currentAnimation;
     char state;
 
 public:
+    Zombie();
     Zombie(Animation* animations, float x, float y, float step, int health, int damage);
     virtual void move() = 0;
     virtual bool animate() = 0;

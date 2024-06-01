@@ -1,8 +1,13 @@
 #include "Zombies.h"
 #include "Animation.h"
 
+Zombie::Zombie()
+    : animations(nullptr), x(0), y(0), step(0), health(0), damage(0), currentAnimation(0), state(0)
+{
+}
+
 Zombie::Zombie(Animation* animations, float x, float y, float step, int health, int damage)
-    : animations(animations), x(x), y(y), step(step), health(health), damage(damage), currentAnimation(0), deltaTime(0), state('W')
+    : animations(animations), x(x), y(y), step(step), health(health), damage(damage), currentAnimation(0), state('W')
 {
 }
 
