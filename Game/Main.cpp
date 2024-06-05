@@ -1,10 +1,19 @@
 #include <SFML/Graphics.hpp>
 #include "Zombies.h"
+#include "Plants.h"
 #include "Animation.h"
 #include <ctime>
 
 using namespace sf;
 using namespace std;
+
+// GAME PROPERTIES
+#define WIDTH 1200
+#define HEIGHT 600
+const int MULTIPLIER = 1;
+const int FPS = 15;
+const int COLS = 9;
+const int ROWS = 5;
 
 //Drawing the background
 void createBack(RenderWindow& window) {
@@ -21,9 +30,9 @@ void createBack(RenderWindow& window) {
 
 int main()
 {
-    //Create a window, n*n
-    RenderWindow window(VideoMode(1200, 700), "Plants Vs Zombies");
-    window.setFramerateLimit(15);
+    // Creating a window
+    RenderWindow window(VideoMode(WIDTH, HEIGHT), "Plants Vs Zombies");
+    window.setFramerateLimit(FPS);
 
     //Game icon
     Image icon;
@@ -33,29 +42,13 @@ int main()
     }
     window.setIcon(32, 32, icon.getPixelsPtr());
 
-    ///////////////////////////////////////
-
-    //Game field (5*9)
-    //Point 137*79 - leftmost point
-    //length 41; width 53
-    const int ROWS = 5;
-    const int COLS = 9;
-
-    bool FIELD_GAME_STATUS[ROWS][COLS];
-
-    for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; j < COLS; j++) {
-            FIELD_GAME_STATUS[i][j] = true;
-        }
-    }
-
+    // Creating a zombie
     Texture normalZombieWalk;
     normalZombieWalk.loadFromFile("./../assets/spritesheets/nZombWalk.png");
     Sprite nZombWalk;
     nZombWalk.setTexture(normalZombieWalk);
     Animation* animations = new Animation(&window, &nZombWalk, 22, 166, 144, false);
-    Zombie* myZombie = new NormalZombie(animations, 500, 0, -0.5, 100, 100);
-
+    Zombie* myZombie = new NormalZombie(animations, 970 - 166, 0, -1 * MULTIPLIER, 100, 100);
 
     while (window.isOpen())
     {
@@ -71,7 +64,6 @@ int main()
         myZombie->move();
         myZombie->animate();
 
-        window.setSize(sf::Vector2u(550, 340));
         window.display();
     }
 
