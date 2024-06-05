@@ -22,10 +22,11 @@ private:
     int height;
     int deltaTime;
     bool ends;
+    float multiplier;
 
 public:
     Animation();
-    Animation(sf::RenderWindow* window, sf::Sprite* spritesheet, int noOfSprites, int width, int height, bool ends);
+    Animation(sf::RenderWindow* window, sf::Sprite* spritesheet, int noOfSprites, int width, int height, bool ends, float multiplier = 1);
     bool animate(float x, float y);
 };
 

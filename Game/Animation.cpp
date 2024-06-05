@@ -6,8 +6,8 @@ Animation::Animation()
 {
 }
 
-Animation::Animation(sf::RenderWindow* window, sf::Sprite* spritesheet, int noOfSprites, int width, int height, bool ends)
-    : window(window), spritesheet(spritesheet), noOfSprites(noOfSprites), width(width), height(height), deltaTime(0), ends(ends)
+Animation::Animation(sf::RenderWindow* window, sf::Sprite* spritesheet, int noOfSprites, int width, int height, bool ends, float multiplier = 1)
+    : window(window), spritesheet(spritesheet), noOfSprites(noOfSprites), width(width), height(height), deltaTime(0), ends(ends), multiplier(multiplier)
 {
 
 }
@@ -15,7 +15,7 @@ Animation::Animation(sf::RenderWindow* window, sf::Sprite* spritesheet, int noOf
 bool Animation::animate(float x, float y)
 {
     // Stepping the animation on function call
-    spritesheet->setTextureRect(sf::IntRect(deltaTime * width, 0, width, height));
+    spritesheet->setTextureRect(sf::IntRect((int)(deltaTime * multiplier) * width, 0, width, height));
     spritesheet->setPosition(x, y);
     window->draw(*spritesheet);
 
