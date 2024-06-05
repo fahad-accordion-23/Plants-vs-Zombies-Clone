@@ -6,7 +6,7 @@ Animation::Animation()
 {
 }
 
-Animation::Animation(sf::RenderWindow* window, sf::Sprite* spritesheet, int noOfSprites, int width, int height, bool ends, float multiplier = 1)
+Animation::Animation(sf::RenderWindow* window, sf::Sprite* spritesheet, int noOfSprites, int width, int height, bool ends, float multiplier)
     : window(window), spritesheet(spritesheet), noOfSprites(noOfSprites), width(width), height(height), deltaTime(0), ends(ends), multiplier(multiplier)
 {
 
@@ -20,7 +20,7 @@ bool Animation::animate(float x, float y)
     window->draw(*spritesheet);
 
     deltaTime += 1;
-    deltaTime %= noOfSprites;
+    deltaTime %= (int)(noOfSprites * (1 / multiplier));
 
     // Checking the animation ending condition
     if (noOfSprites == deltaTime + 1)
