@@ -35,15 +35,20 @@ void NormalZombie::attack(Plant* plant)
     currentAnimation = 1;
 }
 
-void NormalZombie::takeDamage(float damage)
+void NormalZombie::takeDamage(int damage)
 {
     health -= damage;
 
     if (health <= 0)
     {
-        if (state = 'W')                // Ideally different death animations for when killed attacking and when killed walking
+        if (state == 'W')                // Ideally different death animations for when killed attacking and when killed walking
             currentAnimation = 3;
-        else if (state = 'A')
+        else if (state == 'A')
             currentAnimation = 3;
     }
+}
+
+bool NormalZombie::isAlive()
+{
+    return health > 0;
 }

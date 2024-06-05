@@ -24,7 +24,8 @@ public:
     virtual void move() = 0;
     virtual bool animate() = 0;
     virtual void attack(Plant* plant) = 0;
-    virtual void takeDamage(float damage) = 0;
+    virtual void takeDamage(int damage) = 0;
+    virtual bool isAlive() = 0;
 };
 
 class NormalZombie : public Zombie
@@ -34,7 +35,8 @@ public:
     void move() override;
     bool animate() override;
     void attack(Plant* plant) override;
-    void takeDamage(float damage) override;
+    void takeDamage(int damage) override;
+    bool isAlive() override;
 };
 
 #endif

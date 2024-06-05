@@ -4,15 +4,22 @@
 /* Forward Declarations
  */
 class Animation;
+class Zombie;
 
-class Projectile
+class Pea
 {
 private:
     Animation* animation;
     float x;
     float y;
     float step;
+    int damage;
 
+public:
+    Pea();
+    Pea(Animation* animation, float x, float y, float step, int damage);
+    virtual void move();
+    virtual void animate();
+    virtual bool attack(Zombie* zombie);
 };
-
 #endif

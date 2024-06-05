@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Zombies.h"
 #include "Plants.h"
+#include "Projectiles.h"
 #include "Animation.h"
 #include <ctime>
 
@@ -47,8 +48,25 @@ int main()
     normalZombieWalk.loadFromFile("./../assets/spritesheets/nZombWalk.png");
     Sprite nZombWalk;
     nZombWalk.setTexture(normalZombieWalk);
-    Animation* animations = new Animation(&window, &nZombWalk, 22, 166, 144, false);
+
+    Texture wZDie;
+    wZDie.loadFromFile("./../assets/spritesheets/nZombDie.png");
+    Sprite walkZombieDie;
+    walkZombieDie.setTexture(wZDie);
+
+    Animation* animations = new Animation[4];
+    animations[0] = Animation(&window, &nZombWalk, 22, 166, 144, false);
+    animations[3] = Animation(&window, &walkZombieDie, 10, 166, 144, true);
     Zombie* myZombie = new NormalZombie(animations, 970 - 166, 0, -1 * MULTIPLIER, 100, 100);
+
+
+    // Creating a pea
+    Texture normalPea;
+    normalPea.loadFromFile("./../assets/Bullets/PeaNormal/pea.png");
+    Sprite normalPeaSprite;
+    normalPeaSprite.setTexture(normalPea);
+    Animation* animation = new Animation(&window, &normalPeaSprite, 1, 28, 28, false);
+    Pea* myPea = new Pea(animation, 500, 500, -10 * MULTIPLIER, 1);
 
     while (window.isOpen())
     {
@@ -61,8 +79,14 @@ int main()
 
         //Create a background
         createBack(window);
-        myZombie->move();
+
+        if (myZombie->isAlive())
+            myZombie->move();
         myZombie->animate();
+
+        myPea->move();
+        myPea->attack(myZombie);
+        myPea->animate();
 
         window.display();
     }
