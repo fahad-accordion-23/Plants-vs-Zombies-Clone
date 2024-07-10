@@ -56,7 +56,7 @@ int main()
 
     Animation* animations = new Animation[4];
     animations[0] = Animation(&window, &nZombWalk, 22, 166, 144, false);
-    animations[3] = Animation(&window, &walkZombieDie, 10, 166, 144, true);
+    animations[3] = Animation(&window, &walkZombieDie, 10, 166, 144, true, 0.5);
     Zombie* myZombie = new NormalZombie(animations, 970 - 166, 0, -1 * MULTIPLIER, 100, 100);
 
 
@@ -66,7 +66,7 @@ int main()
     Sprite normalPeaSprite;
     normalPeaSprite.setTexture(normalPea);
     Animation* animation = new Animation(&window, &normalPeaSprite, 1, 28, 28, false);
-    Pea* myPea = new Pea(animation, 500, 500, -10 * MULTIPLIER, 1);
+    Pea* myPea = new Pea(animation, 500, 500, -10 * MULTIPLIER, 4);
 
     while (window.isOpen())
     {

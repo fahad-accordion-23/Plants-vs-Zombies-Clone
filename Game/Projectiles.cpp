@@ -12,6 +12,12 @@ Pea::Pea(Animation* animation, float x, float y, float step, int damage)
 {
 }
 
+int* Pea::getCoordinates()
+{
+    int coordinates[2] = { x, y };
+    return coordinates;
+}
+
 void Pea::move()
 {
     x += step;

@@ -14,22 +14,28 @@ class Plant
 {
 protected:
     Animation* animation;
-    int row;
-    int col;
+    int x;
+    int y;
     int health;
     int damage;
 
 public:
     Plant();
-    Plant(Animation* animation, int row, int col, int health, int damage);
+    Plant(Animation* animation, int x, int y, int health, int damage);
     virtual bool animate() = 0;
     virtual void takeDamage(float damage) = 0;
+    bool isAlive();
 };
 
 class Peashooter : public Plant
 {
+protected:
+    Pea* peasShot;
+    int deltaTime;
+    int interval;
+
 public:
-    Peashooter(Animation* animation, int row, int col, int health, int damage);
+    Peashooter(Animation* animation, int x, int y, int health, int damage, int interval);
     bool animate() override;
     void takeDamage(float damage) override;
     Pea* shoot();

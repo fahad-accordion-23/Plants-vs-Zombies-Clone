@@ -6,6 +6,8 @@
 class Animation;
 class Plant;
 
+/* Abstract Zombie Class
+ */
 class Zombie
 {
 protected:
